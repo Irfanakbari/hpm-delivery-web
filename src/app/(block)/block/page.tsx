@@ -1,7 +1,8 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { useSession } from "next-auth/react";
+import {signOut, useSession} from "next-auth/react";
 import { TypeAnimation } from "react-type-animation";
+import {Button} from "antd";
 
 export default function Block(){
   const router = useRouter();
@@ -43,7 +44,9 @@ export default function Block(){
           <p className="font-mono text-gray-200 text-lg mb-6">&gt; <span className="text-yellow-400">ERROR POSSIBLY CAUSED BY</span>: [<b>You don&apos;t have the appropriate role to access this application, or you don&apos;t have permission to access it, please contact super admin to change the permissions on your account.</b>...]</p>
           {/*<p className="font-mono text-gray-200 text-lg mb-6">&gt; <span className="text-yellow-400">SOME PAGES ON THIS SERVER THAT YOU DO HAVE PERMISSION TO ACCESS</span>: [<a href="/" className="text-blue-500">Home Page</a>, <a href="/" className="text-blue-500">About Us</a>, <a href="/" className="text-blue-500">Contact Us</a>, <a href="/" className="text-blue-500">Blog</a>...]</p>*/}
           <p className="font-mono text-gray-200 text-lg">&gt; <span className="text-yellow-400">HAVE A NICE DAY {session?.user?.name?.toUpperCase()} :-)</span></p>
-        </div>
+            <button className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={()=>signOut()}>
+                Sign Out
+            </button>        </div>
       </div>
     </>
   );
